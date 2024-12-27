@@ -12,15 +12,12 @@ dotenv.config();
 connectDatabase();
 
 const app = express();
-// Add this to app.js
+app.use(cors());
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('Server is running');
 });
-// Middleware
-app.use(cors({
-  origin: '*'
-}));
-app.use(express.json());
 
 // Mount routers
 app.use('/api/products', productRoutes);
